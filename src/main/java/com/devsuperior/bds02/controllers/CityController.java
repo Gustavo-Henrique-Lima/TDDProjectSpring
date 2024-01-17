@@ -1,4 +1,4 @@
-package com.devsuperior.bds02;
+package com.devsuperior.bds02.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -36,5 +36,10 @@ public class CityController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(city.getId()).toUri();
 		return ResponseEntity.created(uri).body(city);
 	}
-
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteCityById(@PathVariable Long id){
+		service.deleteCityById(id);
+		return ResponseEntity.noContent().build();
+	}
 }
